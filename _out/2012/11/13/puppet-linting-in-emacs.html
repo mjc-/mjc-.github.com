@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>emacs goodness for your puppet linting needs</title>
+    
+    <meta name="author" content="mjc">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/syntax.min.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+         <link rel="shortcut icon" href="images/favicon.ico">
+         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+         <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+         -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="row">
+            <div class="span10 offset2">
+              <ul class="nav nav-tabs">
+                <li><a href="/">Home</a></li>
+                <li><a href="https://bitbucket.org/mc">Bitbucket</a></li>
+                <li><a href="https://github.com/mjc-">Github</a></li>
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1><b>mjc's bitz and stuff</b></h1>
+        <small><p>you take your bitz, and you make stuff</p></small>
+      </div>
+
+      <div class="content">
+        <div class="row">
+  <div class="span8">
+    <div class="post-title">
+      <h3>emacs goodness for your puppet linting needs</h3>
+    </div>
+    
+    
+    <p>
+      <small>
+        Tagged as: 
+        
+        <a href="/tag/emacs.html">emacs</a>
+        
+        <a href="/tag/puppet.html">puppet</a>
+        
+        <a href="/tag/puppet-lint.html">puppet-lint</a>
+        
+      </small>
+    </p>
+    
+    <p>One of the emacs features that first impressed me was the ability to navigate source files based on gcc compilation errors. After doing some puppet dev for a while, I decided to investigate how hard it would be to do this with puppet source and puppet-lint. Turns out, not that hard.</p>
+
+<p>My resulting init-puppet-mode.el:</p>
+<div class='highlight'><pre><code class='cl'><span class='p'>(</span><span class='nb'>require</span> <span class='ss'>&#39;compile</span><span class='p'>)</span>
+<span class='p'>(</span><span class='nv'>add-hook</span> <span class='ss'>&#39;puppet-mode-hook</span>
+          <span class='p'>(</span><span class='k'>lambda</span> <span class='p'>()</span>
+            <span class='p'>(</span><span class='nb'>set</span> <span class='p'>(</span><span class='nv'>make-local-variable</span> <span class='ss'>&#39;compile-command</span><span class='p'>)</span>
+                 <span class='c1'>;; puppet-lint current file</span>
+                 <span class='p'>(</span><span class='k'>let</span> <span class='p'>((</span><span class='nv'>file</span> <span class='p'>(</span><span class='nv'>file-name-nondirectory</span> <span class='nv'>buffer-file-name</span><span class='p'>)))</span>
+                   <span class='p'>(</span><span class='nb'>format</span> <span class='s'>&quot;%s %s&quot;</span> <span class='s'>&quot;puppet-lint --with-filename&quot;</span> <span class='nv'>file</span><span class='p'>)))))</span>
+
+<span class='p'>(</span><span class='nv'>add-hook</span> <span class='ss'>&#39;puppet-mode-hook</span>
+          <span class='p'>(</span><span class='k'>lambda</span> <span class='p'>()</span>
+            <span class='p'>(</span><span class='nv'>define-key</span> <span class='nv'>puppet-mode-map</span> <span class='p'>(</span><span class='nv'>kbd</span> <span class='s'>&quot;C-c C-c&quot;</span><span class='p'>)</span> <span class='ss'>&#39;compile</span><span class='p'>)</span>
+            <span class='p'>(</span><span class='nv'>define-key</span> <span class='nv'>puppet-mode-map</span> <span class='p'>(</span><span class='nv'>kbd</span> <span class='s'>&quot;C-c C-n&quot;</span><span class='p'>)</span> <span class='ss'>&#39;next-error</span><span class='p'>)))</span>
+
+<span class='p'>(</span><span class='nv'>add-to-list</span> <span class='ss'>&#39;compilation-error-regexp-alist</span> <span class='ss'>&#39;puppet</span><span class='p'>)</span>
+<span class='p'>(</span><span class='nv'>add-to-list</span> <span class='ss'>&#39;compilation-error-regexp-alist-alist</span>
+             <span class='o'>&#39;</span><span class='p'>(</span><span class='nv'>puppet</span> <span class='s'>&quot;^\\(.+?\\) - \\(.+?\\): .+? on line \\([0-9]+\\)$&quot;</span>
+                      <span class='mi'>1</span> <span class='mi'>3</span><span class='p'>))</span>
+</code></pre>
+</div>
+    <h4>Published</h4>
+    <div class="date"><span class="datetime">13 November 2012</span></div>
+    <div class="pagination">
+      <ul>
+        
+        <li class="prev"><a href="/2012/09/19/death-to-sna.html" title="death to sna">&larr; Previous</a></li>
+        
+        
+        <li class="next disabled"><a>Next &rarr;</a>
+          
+      </ul>
+    </div>
+  </div>
+  
+  <div class="span4">
+    Sidebar?
+  </div>
+
+</div>
+
+      </div>
+
+      <footer>
+        <p>&copy; mjc 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
