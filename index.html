@@ -64,6 +64,12 @@
     <div class='posts'>
 
       
+      <h4><a href='/2012/11/13/puppet-linting-in-emacs.html'>emacs goodness for your puppet linting needs</a></h4>
+      <p><span class='datetime'><small>13 Nov 2012</small></span></p>
+      <p>One of the emacs features that first impressed me was the ability to navigate source files based on gcc compilation errors. After doing some puppet dev for a while, I decided to investigate how hard it would be to do this with puppet source and puppet-lint. Turns out, not that hard. My resulting init-puppet-mode.el: (require &#39;compile) (add-hook &#39;puppet-mode-hook (lambda () (set (make-local-variable &#39;compile-command) ;; puppet-lint current file (let ((file (file-name-nondirectory buffer-file-name))) (format &quot;%s %s&quot; &quot;puppet-lint...</p>
+      <p><a class='more' href='/2012/11/13/puppet-linting-in-emacs.html'>continue reading &raquo;</a></p>
+      <br />
+      
       <h4><a href='/2012/09/19/death-to-sna.html'>death to sna</a></h4>
       <p><span class='datetime'><small>19 Sep 2012</small></span></p>
       <p>After much failure in getting this virtual crtc patch running on gentoo, I finally decided to start throwing debug printfs straight into the Xorg intel driver. This is Xorg driver-speak for printf&#8230; xf86DrvMsg(scrn-&gt;scrnIndex, X_INFO, &quot;my debug string&quot;); This yielded the finding that the init functions that turn on the virtual crtc aren&#8217;t called. Reason being, sna support is on by default and the patches currently don&#8217;t account for that. For now, a USE=&#8221;-sna&#8221; is enough...</p>
@@ -76,12 +82,6 @@
       <p><a class='more' href='/2012/09/17/htmlfontify-0pt-font-size.html'>continue reading &raquo;</a></p>
       <br />
       
-      <h4><a href='/2012/09/06/emacs-ido-sql.html'>emacs goodness for your sql needs</a></h4>
-      <p><span class='datetime'><small>06 Sep 2012</small></span></p>
-      <p>In my quest to take less trips outside the loving embrace of emacs, I decided to investigate SQL integration. Fortune smiled upon me, and I found a post documenting how to configure some presets. The one change I really wanted to make was to avoid having to repeat myself by defining functions for each connection. The result: (defun hey-everybody-its-sql-time (db-of-choice) &quot;make with the sql action&quot; (interactive (list (completing-read &quot;DB: &quot; sql-connection-alist))) (sql-connect-preset (intern db-of-choice))) This...</p>
-      <p><a class='more' href='/2012/09/06/emacs-ido-sql.html'>continue reading &raquo;</a></p>
-      <br />
-      
 
     </div>
   </div>
@@ -89,6 +89,12 @@
   <div class='span4'>
     <div class='posts'>
       
+      
+      <h4><a href='/2012/09/06/emacs-ido-sql.html'>emacs goodness for your sql needs</a></h4>
+      <p><span class='datetime'><small>06 Sep 2012</small></span></p>
+      <p>In my quest to take less trips outside the loving embrace of emacs, I decided to investigate SQL integration. Fortune smiled upon me, and I found a post documenting how to configure some presets. The one change I really wanted to make was to avoid having to repeat myself by defining functions for each connection. The result: (defun hey-everybody-its-sql-time (db-of-choice) &quot;make with the sql action&quot; (interactive (list (completing-read &quot;DB: &quot; sql-connection-alist))) (sql-connect-preset (intern db-of-choice))) This...</p>
+      <p><a class='more' href='/2012/09/06/emacs-ido-sql.html'>continue reading &raquo;</a></p>
+      <br />
       
       <h4><a href='/2012/09/05/rtorrent-rcd-arch.html'>daemonizing rtorrent under ArchLinux</a></h4>
       <p><span class='datetime'><small>05 Sep 2012</small></span></p>
@@ -102,7 +108,7 @@
   </div>
   <div class='span4'>
       <div id='tag-cloud'>
-      <a class='set-1' href='/tag/archlinux.html'>archlinux</a> <a class='set-1' href='/tag/crtc.html'>crtc</a> <a class='set-5' href='/tag/emacs.html'>emacs</a> <a class='set-1' href='/tag/gentoo.html'>gentoo</a> <a class='set-1' href='/tag/htmlfontify.html'>htmlfontify</a> <a class='set-1' href='/tag/ido-mode.html'>ido-mode</a> <a class='set-1' href='/tag/rtorrent.html'>rtorrent</a> <a class='set-1' href='/tag/sql.html'>sql</a> <a class='set-1' href='/tag/tmux.html'>tmux</a> <a class='set-1' href='/tag/virtual.html'>virtual</a>
+      <a class='set-1' href='/tag/archlinux.html'>archlinux</a> <a class='set-1' href='/tag/crtc.html'>crtc</a> <a class='set-5' href='/tag/emacs.html'>emacs</a> <a class='set-1' href='/tag/gentoo.html'>gentoo</a> <a class='set-1' href='/tag/htmlfontify.html'>htmlfontify</a> <a class='set-1' href='/tag/ido-mode.html'>ido-mode</a> <a class='set-1' href='/tag/puppet.html'>puppet</a> <a class='set-1' href='/tag/puppet-lint.html'>puppet-lint</a> <a class='set-1' href='/tag/rtorrent.html'>rtorrent</a> <a class='set-1' href='/tag/sql.html'>sql</a> <a class='set-1' href='/tag/tmux.html'>tmux</a> <a class='set-1' href='/tag/virtual.html'>virtual</a>
       </div>
   </div>
 </div><div class='row'>
