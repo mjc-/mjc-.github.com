@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Only failure makes us experts</title>
+    
+    <meta name="author" content="mjc">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/syntax.min.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+         <link rel="shortcut icon" href="images/favicon.ico">
+         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+         <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+         -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="row">
+            <div class="span10 offset2">
+              <ul class="nav nav-tabs">
+                <li><a href="/">Home</a></li>
+                <li><a href="https://bitbucket.org/mc">Bitbucket</a></li>
+                <li><a href="https://github.com/mjc-">Github</a></li>
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1><b>mjc's bitz and stuff</b></h1>
+        <small><p>you take your bitz, and you make stuff</p></small>
+      </div>
+
+      <div class="content">
+        <div class='row'>
+  <div class='span8'>
+    <h2>Recent Posts</h2>
+  </div>
+  <div class='span4'>
+    <h2>Sidebar</h2>
+  </div>
+</div><div class='row'>
+  <div class='span4'>
+    <div class='posts'>
+
+      
+      <h4><a href='/2012/09/19/death-to-sna.html'>death to sna</a></h4>
+      <p><span class='datetime'><small>19 Sep 2012</small></span></p>
+      <p>After much failure in getting this virtual crtc patch running on gentoo, I finally decided to start throwing debug printfs straight into the Xorg intel driver. This is Xorg driver-speak for printf&#8230; xf86DrvMsg(scrn-&gt;scrnIndex, X_INFO, &quot;my debug string&quot;); This yielded the finding that the init functions that turn on the virtual crtc aren&#8217;t called. Reason being, sna support is on by default and the patches currently don&#8217;t account for that. For now, a USE=&#8221;-sna&#8221; is enough...</p>
+      <p><a class='more' href='/2012/09/19/death-to-sna.html'>continue reading &raquo;</a></p>
+      <br />
+      
+      <h4><a href='/2012/09/17/htmlfontify-0pt-font-size.html'>fixing htmlfontify in scpaste</a></h4>
+      <p><span class='datetime'><small>17 Sep 2012</small></span></p>
+      <p>While trying out scpaste I encountered some delightful broken by default behaviour with htmlfontify. Htmlfontify decides to try and set html font size by looking at font information from your current emacs session. Evidently this code doesn&#8217;t work so well in a terminal :/ Luckily I found a pastebin entry somewhere (oh the irony) with this following gem. (add-hook &#39;hfy-post-html-hooks (lambda () ;; Replace font-size: 0pt with nothing on htmlfontify-buffer ;; which is called from...</p>
+      <p><a class='more' href='/2012/09/17/htmlfontify-0pt-font-size.html'>continue reading &raquo;</a></p>
+      <br />
+      
+      <h4><a href='/2012/09/06/emacs-ido-sql.html'>emacs goodness for your sql needs</a></h4>
+      <p><span class='datetime'><small>06 Sep 2012</small></span></p>
+      <p>In my quest to take less trips outside the loving embrace of emacs, I decided to investigate SQL integration. Fortune smiled upon me, and I found a post documenting how to configure some presets. The one change I really wanted to make was to avoid having to repeat myself by defining functions for each connection. The result: (defun hey-everybody-its-sql-time (db-of-choice) &quot;make with the sql action&quot; (interactive (list (completing-read &quot;DB: &quot; sql-connection-alist))) (sql-connect-preset (intern db-of-choice))) This...</p>
+      <p><a class='more' href='/2012/09/06/emacs-ido-sql.html'>continue reading &raquo;</a></p>
+      <br />
+      
+
+    </div>
+  </div>
+
+  <div class='span4'>
+    <div class='posts'>
+      
+      
+      <h4><a href='/2012/09/05/rtorrent-rcd-arch.html'>daemonizing rtorrent under ArchLinux</a></h4>
+      <p><span class='datetime'><small>05 Sep 2012</small></span></p>
+      <p>Being a collector of digital media. I find myself running numerous instances of rtorrent to help keep different trackers separated. At some point early on, having to log in and restart them after rebooting got old, so I hacked together a template that I just search replace as new trackers come online. #!/bin/bash . /etc/rc.conf . /etc/rc.d/functions case &quot;$1&quot; in start) stat_busy &quot;Starting rtorrent (why.cd)&quot; install -m 3777 -o root -g http -d /run/rtorrent su...</p>
+      <p><a class='more' href='/2012/09/05/rtorrent-rcd-arch.html'>continue reading &raquo;</a></p>
+      <br />
+      
+      
+    </div>
+    
+  </div>
+  <div class='span4'>
+      <div id='tag-cloud'>
+      <a class='set-1' href='/tag/archlinux.html'>archlinux</a> <a class='set-1' href='/tag/crtc.html'>crtc</a> <a class='set-5' href='/tag/emacs.html'>emacs</a> <a class='set-1' href='/tag/gentoo.html'>gentoo</a> <a class='set-1' href='/tag/htmlfontify.html'>htmlfontify</a> <a class='set-1' href='/tag/ido-mode.html'>ido-mode</a> <a class='set-1' href='/tag/rtorrent.html'>rtorrent</a> <a class='set-1' href='/tag/sql.html'>sql</a> <a class='set-1' href='/tag/tmux.html'>tmux</a> <a class='set-1' href='/tag/virtual.html'>virtual</a>
+      </div>
+  </div>
+</div><div class='row'>
+  <div class='span12'>
+    <blockquote>
+      <p>I have discovered that there are two types of command interfaces in the world of computing: good interfaces and user interfaces.</p>
+      <small>djb in <cite title='Qmail Security Guarantee'>Qmail Security Guarantee</cite></small>
+    </blockquote>
+  </div>
+</div>
+      </div>
+
+      <footer>
+        <p>&copy; mjc 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
