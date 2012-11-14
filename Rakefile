@@ -19,7 +19,7 @@ end
 
 task :bootstrap_css do |t|
   puts "Symlinking custom.less into bootstrap"
-  sh "cd bootstrap/less && ln -s ../../custom.less"
+  sh "cd bootstrap/less && ln -sf ../../custom.less"
   puts "Copying LESS files"
   Dir.glob(File.join(BOOTSTRAP_SOURCE, 'less', '*.less')).each do |source|
     target = File.join('src/bootstrap/less', File.basename(source))
