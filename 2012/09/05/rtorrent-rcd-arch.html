@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>daemonizing rtorrent under ArchLinux</title>
+    
+    <meta name="author" content="mjc">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/syntax.min.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+         <link rel="shortcut icon" href="images/favicon.ico">
+         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+         <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+         -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="row">
+            <div class="span10 offset2">
+              <ul class="nav nav-tabs">
+                <li><a href="/">Home</a></li>
+                <li><a href="https://bitbucket.org/mc">Bitbucket</a></li>
+                <li><a href="https://github.com/mjc-">Github</a></li>
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1><b>mjc's bitz and stuff</b></h1>
+        <small><p>you take your bitz, and you make stuff</p></small>
+      </div>
+
+      <div class="content">
+        <div class="row">
+  <div class="span8">
+    <div class="post-title">
+      <h3>daemonizing rtorrent under ArchLinux</h3>
+    </div>
+    
+    
+    <p>
+      <small>
+        Tagged as: 
+        
+        <a href="/tag/rtorrent.html">rtorrent</a>
+        
+        <a href="/tag/tmux.html">tmux</a>
+        
+        <a href="/tag/archlinux.html">archlinux</a>
+        
+      </small>
+    </p>
+    
+    <p>Being a <a href='http://en.wikipedia.org/wiki/Pirate'>collector of digital media</a>. I find myself running numerous instances of rtorrent to help keep different trackers separated. At some point early on, having to log in and restart them after rebooting got old, so I hacked together a template that I just search replace as new trackers come online.</p>
+<div class='highlight'><pre><code class='bash'><span class='c'>#!/bin/bash</span>
+
+. /etc/rc.conf
+. /etc/rc.d/functions
+
+<span class='k'>case</span> <span class='s2'>&quot;$1&quot;</span> in
+  start<span class='o'>)</span>
+    stat_busy <span class='s2'>&quot;Starting rtorrent (why.cd)&quot;</span>
+    install -m 3777 -o root -g http -d /run/rtorrent
+    su why -c <span class='s1'>&#39;umask 002 ; tmux new -s rtorrent -d rtorrent&#39;</span> &amp;&gt; /dev/null
+    <span class='k'>if</span> <span class='o'>[</span> <span class='nv'>$?</span> -gt 0 <span class='o'>]</span>; <span class='k'>then</span>
+<span class='k'>      </span>stat_fail
+    <span class='k'>else</span>
+<span class='k'>      </span>add_daemon rtorrent-why
+      stat_done
+    <span class='k'>fi</span>
+    ;;
+  stop<span class='o'>)</span>
+    stat_busy <span class='s2'>&quot;Stopping rtorrent (why.cd)&quot;</span>
+    killall -u why -w -s 2 /usr/bin/rtorrent &amp;&gt; /dev/null
+    <span class='k'>if</span> <span class='o'>[</span> <span class='nv'>$?</span> -gt 0 <span class='o'>]</span>; <span class='k'>then</span>
+<span class='k'>      </span>stat_fail
+    <span class='k'>else</span>
+<span class='k'>      </span>rm_daemon rtorrent-why
+      stat_done
+    <span class='k'>fi</span>
+    ;;
+  restart<span class='o'>)</span>
+    <span class='nv'>$0</span> stop
+    sleep 1
+    <span class='nv'>$0</span> start
+    ;;
+  *<span class='o'>)</span>
+    <span class='nb'>echo</span> <span class='s2'>&quot;usage: $0 {start|stop|restart}&quot;</span>
+<span class='k'>esac</span>
+<span class='nb'>exit </span>0
+</code></pre>
+</div>
+    <h4>Published</h4>
+    <div class="date"><span class="datetime">05 September 2012</span></div>
+    <div class="pagination">
+      <ul>
+        
+        <li class="prev disabled"><a>&larr; Previous</a></li>
+        
+        
+        <li class="next"><a href="/2012/09/06/emacs-ido-sql.html" title="emacs goodness for your sql needs">Next &rarr;</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  
+  <div class="span4">
+    Sidebar?
+  </div>
+
+</div>
+
+      </div>
+
+      <footer>
+        <p>&copy; mjc 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>fixing htmlfontify in scpaste</title>
+    
+    <meta name="author" content="mjc">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/syntax.min.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+         <link rel="shortcut icon" href="images/favicon.ico">
+         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+         <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+         -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="row">
+            <div class="span10 offset2">
+              <ul class="nav nav-tabs">
+                <li><a href="/">Home</a></li>
+                <li><a href="https://bitbucket.org/mc">Bitbucket</a></li>
+                <li><a href="https://github.com/mjc-">Github</a></li>
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1><b>mjc's bitz and stuff</b></h1>
+        <small><p>you take your bitz, and you make stuff</p></small>
+      </div>
+
+      <div class="content">
+        <div class="row">
+  <div class="span8">
+    <div class="post-title">
+      <h3>fixing htmlfontify in scpaste</h3>
+    </div>
+    
+    
+    <p>
+      <small>
+        Tagged as: 
+        
+        <a href="/tag/emacs.html">emacs</a>
+        
+        <a href="/tag/htmlfontify.html">htmlfontify</a>
+        
+      </small>
+    </p>
+    
+    <p>While trying out <a href='http://github.com/technomancy/scpaste'>scpaste</a> I encountered some delightful broken by default behaviour with htmlfontify. Htmlfontify decides to try and set html font size by looking at font information from your current emacs session. Evidently this code doesn&#8217;t work so well in a terminal :/</p>
+
+<p>Luckily I found a pastebin entry somewhere (oh the irony) with this following gem.</p>
+<div class='highlight'><pre><code class='cl'><span class='p'>(</span><span class='nv'>add-hook</span> <span class='ss'>&#39;hfy-post-html-hooks</span>
+      <span class='p'>(</span><span class='k'>lambda</span> <span class='p'>()</span>
+        <span class='c1'>;; Replace font-size: 0pt with nothing on htmlfontify-buffer</span>
+        <span class='c1'>;; which is called from scpaste. This happens when you&#39;re</span>
+        <span class='c1'>;; using a console-based emacs.</span>
+        <span class='p'>(</span><span class='nv'>beginning-of-buffer</span><span class='p'>)</span>
+        <span class='p'>(</span><span class='nv'>while</span> <span class='p'>(</span><span class='nv'>search-forward</span> <span class='s'>&quot;font-size: 0pt; &quot;</span> <span class='no'>nil</span> <span class='no'>t</span><span class='p'>)</span>
+          <span class='p'>(</span><span class='nv'>replace-match</span> <span class='s'>&quot;&quot;</span> <span class='no'>nil</span> <span class='no'>t</span><span class='p'>))))</span>
+</code></pre>
+</div>
+<p>So, I figured I&#8217;d preserve it hear for other folks hit by the same issue. You know, those crazy folks that have the audacity to run emacs <em>in a terminal</em>.</p>
+    <h4>Published</h4>
+    <div class="date"><span class="datetime">17 September 2012</span></div>
+    <div class="pagination">
+      <ul>
+        
+        <li class="prev"><a href="/2012/09/06/emacs-ido-sql.html" title="emacs goodness for your sql needs">&larr; Previous</a></li>
+        
+        
+        <li class="next"><a href="/2012/09/19/death-to-sna.html" title="death to sna">Next &rarr;</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  
+  <div class="span4">
+    Sidebar?
+  </div>
+
+</div>
+
+      </div>
+
+      <footer>
+        <p>&copy; mjc 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>emacs goodness for your sql needs</title>
+    
+    <meta name="author" content="mjc">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/syntax.min.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+         <link rel="shortcut icon" href="images/favicon.ico">
+         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+         <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+         -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="row">
+            <div class="span10 offset2">
+              <ul class="nav nav-tabs">
+                <li><a href="/">Home</a></li>
+                <li><a href="https://bitbucket.org/mc">Bitbucket</a></li>
+                <li><a href="https://github.com/mjc-">Github</a></li>
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1><b>mjc's bitz and stuff</b></h1>
+        <small><p>you take your bitz, and you make stuff</p></small>
+      </div>
+
+      <div class="content">
+        <div class="row">
+  <div class="span8">
+    <div class="post-title">
+      <h3>emacs goodness for your sql needs</h3>
+    </div>
+    
+    
+    <p>
+      <small>
+        Tagged as: 
+        
+        <a href="/tag/emacs.html">emacs</a>
+        
+        <a href="/tag/ido-mode.html">ido-mode</a>
+        
+        <a href="/tag/sql.html">sql</a>
+        
+      </small>
+    </p>
+    
+    <p>In my quest to take less trips outside the loving embrace of emacs, I decided to investigate SQL integration. Fortune smiled upon me, and I found a <a href='http://rforge.org/2011/01/18/emacs-as-mysql-frontend/'>post</a> documenting how to configure some presets. The one change I really wanted to make was to avoid having to repeat myself by defining functions for each connection. The result:</p>
+<div class='highlight'><pre><code class='cl'><span class='p'>(</span><span class='nb'>defun</span> <span class='nv'>hey-everybody-its-sql-time</span> <span class='p'>(</span><span class='nv'>db-of-choice</span><span class='p'>)</span>
+  <span class='s'>&quot;make with the sql action&quot;</span>
+  <span class='p'>(</span><span class='nv'>interactive</span> <span class='p'>(</span><span class='nb'>list</span>
+                <span class='p'>(</span><span class='nv'>completing-read</span> <span class='s'>&quot;DB: &quot;</span> <span class='nv'>sql-connection-alist</span><span class='p'>)))</span>
+  <span class='p'>(</span><span class='nv'>sql-connect-preset</span> <span class='p'>(</span><span class='nb'>intern</span> <span class='nv'>db-of-choice</span><span class='p'>)))</span>
+</code></pre>
+</div>
+<p>This works beautifully, although I do get asked to confirm the DB details once per emacs instance. Not sure what&#8217;s going on there, if this gets on my nerves, I may dig deeper.</p>
+    <h4>Published</h4>
+    <div class="date"><span class="datetime">06 September 2012</span></div>
+    <div class="pagination">
+      <ul>
+        
+        <li class="prev"><a href="/2012/09/05/rtorrent-rcd-arch.html" title="daemonizing rtorrent under ArchLinux">&larr; Previous</a></li>
+        
+        
+        <li class="next"><a href="/2012/09/17/htmlfontify-0pt-font-size.html" title="fixing htmlfontify in scpaste">Next &rarr;</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  
+  <div class="span4">
+    Sidebar?
+  </div>
+
+</div>
+
+      </div>
+
+      <footer>
+        <p>&copy; mjc 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
