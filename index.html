@@ -64,6 +64,12 @@
     <div class='posts'>
 
       
+      <h4><a href='/2012/11/20/making-freenx-server-work-without-nc--z.html'>Making freenx server work without nc -z</a></h4>
+      <p><span class='datetime'><small>20 Nov 2012</small></span></p>
+      <p>It seems RedHat folks are still improving software by way of breaking it. This particular hack I put in was to work around the replacement of the OpenBSD netcat with the new and improved one from nmap. Just one problem, it doesn&#8217;t support one of the handiest features from the OpenBSD version, simple port checking from shell scripts. The place of breakage I came across was in freenx-server. Ugly diff that may or may not...</p>
+      <p><a class='more' href='/2012/11/20/making-freenx-server-work-without-nc--z.html'>continue reading &raquo;</a></p>
+      <br />
+      
       <h4><a href='/2012/11/13/puppet-linting-in-emacs.html'>emacs goodness for your puppet linting needs</a></h4>
       <p><span class='datetime'><small>13 Nov 2012</small></span></p>
       <p>One of the emacs features that first impressed me was the ability to navigate source files based on gcc compilation errors. After doing some puppet dev for a while, I decided to investigate how hard it would be to do this with puppet source and puppet-lint. Turns out, not that hard. My resulting init-puppet-mode.el: (require &#39;compile) (add-hook &#39;puppet-mode-hook (lambda () (set (make-local-variable &#39;compile-command) ;; puppet-lint current file (let ((file (file-name-nondirectory buffer-file-name))) (format &quot;%s %s&quot; &quot;puppet-lint...</p>
@@ -76,12 +82,6 @@
       <p><a class='more' href='/2012/09/19/death-to-sna.html'>continue reading &raquo;</a></p>
       <br />
       
-      <h4><a href='/2012/09/17/htmlfontify-0pt-font-size.html'>fixing htmlfontify in scpaste</a></h4>
-      <p><span class='datetime'><small>17 Sep 2012</small></span></p>
-      <p>While trying out scpaste I encountered some delightful broken by default behaviour with htmlfontify. Htmlfontify decides to try and set html font size by looking at font information from your current emacs session. Evidently this code doesn&#8217;t work so well in a terminal :/ Luckily I found a pastebin entry somewhere (oh the irony) with this following gem. (add-hook &#39;hfy-post-html-hooks (lambda () ;; Replace font-size: 0pt with nothing on htmlfontify-buffer ;; which is called from...</p>
-      <p><a class='more' href='/2012/09/17/htmlfontify-0pt-font-size.html'>continue reading &raquo;</a></p>
-      <br />
-      
 
     </div>
   </div>
@@ -89,6 +89,12 @@
   <div class='span4'>
     <div class='posts'>
       
+      
+      <h4><a href='/2012/09/17/htmlfontify-0pt-font-size.html'>fixing htmlfontify in scpaste</a></h4>
+      <p><span class='datetime'><small>17 Sep 2012</small></span></p>
+      <p>While trying out scpaste I encountered some delightful broken by default behaviour with htmlfontify. Htmlfontify decides to try and set html font size by looking at font information from your current emacs session. Evidently this code doesn&#8217;t work so well in a terminal :/ Luckily I found a pastebin entry somewhere (oh the irony) with this following gem. (add-hook &#39;hfy-post-html-hooks (lambda () ;; Replace font-size: 0pt with nothing on htmlfontify-buffer ;; which is called from...</p>
+      <p><a class='more' href='/2012/09/17/htmlfontify-0pt-font-size.html'>continue reading &raquo;</a></p>
+      <br />
       
       <h4><a href='/2012/09/06/emacs-ido-sql.html'>emacs goodness for your sql needs</a></h4>
       <p><span class='datetime'><small>06 Sep 2012</small></span></p>
@@ -108,7 +114,7 @@
   </div>
   <div class='span4'>
       <div id='tag-cloud'>
-      <a class='set-1' href='/tag/archlinux.html'>archlinux</a> <a class='set-1' href='/tag/crtc.html'>crtc</a> <a class='set-5' href='/tag/emacs.html'>emacs</a> <a class='set-1' href='/tag/gentoo.html'>gentoo</a> <a class='set-1' href='/tag/htmlfontify.html'>htmlfontify</a> <a class='set-1' href='/tag/ido-mode.html'>ido-mode</a> <a class='set-1' href='/tag/puppet.html'>puppet</a> <a class='set-1' href='/tag/puppet-lint.html'>puppet-lint</a> <a class='set-1' href='/tag/rtorrent.html'>rtorrent</a> <a class='set-1' href='/tag/sql.html'>sql</a> <a class='set-1' href='/tag/tmux.html'>tmux</a> <a class='set-1' href='/tag/virtual.html'>virtual</a>
+      <a class='set-1' href='/tag/archlinux.html'>archlinux</a> <a class='set-1' href='/tag/crtc.html'>crtc</a> <a class='set-5' href='/tag/emacs.html'>emacs</a> <a class='set-1' href='/tag/fedora.html'>fedora</a> <a class='set-1' href='/tag/freenx.html'>freenx</a> <a class='set-1' href='/tag/gentoo.html'>gentoo</a> <a class='set-1' href='/tag/htmlfontify.html'>htmlfontify</a> <a class='set-1' href='/tag/ido-mode.html'>ido-mode</a> <a class='set-1' href='/tag/netcat.html'>netcat</a> <a class='set-1' href='/tag/puppet.html'>puppet</a> <a class='set-1' href='/tag/puppet-lint.html'>puppet-lint</a> <a class='set-1' href='/tag/redhat.html'>redhat</a> <a class='set-1' href='/tag/rtorrent.html'>rtorrent</a> <a class='set-1' href='/tag/sql.html'>sql</a> <a class='set-1' href='/tag/tmux.html'>tmux</a> <a class='set-1' href='/tag/virtual.html'>virtual</a>
       </div>
   </div>
 </div><div class='row'>

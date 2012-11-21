@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Making freenx server work without nc -z</title>
+    
+    <meta name="author" content="mjc">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/syntax.min.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+         <link rel="shortcut icon" href="images/favicon.ico">
+         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+         <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+         -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="row">
+            <div class="span10 offset2">
+              <ul class="nav nav-tabs">
+                <li><a href="/">Home</a></li>
+                <li><a href="https://bitbucket.org/mc">Bitbucket</a></li>
+                <li><a href="https://github.com/mjc-">Github</a></li>
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1><b>mjc's bitz and stuff</b></h1>
+        <small><p>you take your bitz, and you make stuff</p></small>
+      </div>
+
+      <div class="content">
+        <div class="row">
+  <div class="span8">
+    <div class="post-title">
+      <h3>Making freenx server work without nc -z</h3>
+    </div>
+    
+    
+    <p>
+      <small>
+        Tagged as: 
+        
+        <a href="/tag/freenx.html">freenx</a>
+        
+        <a href="/tag/fedora.html">fedora</a>
+        
+        <a href="/tag/redhat.html">redhat</a>
+        
+        <a href="/tag/netcat.html">netcat</a>
+        
+      </small>
+    </p>
+    
+    <p>It seems RedHat folks are still improving software by way of breaking it. This particular hack I put in was to work around the replacement of the OpenBSD netcat with the new and improved one from nmap. Just one problem, it doesn&#8217;t support one of the handiest features from the OpenBSD version, simple port checking from shell scripts. The place of breakage I came across was in freenx-server. Ugly diff that may or may not apply (I did a little hand editing to try and pretty it up) included:</p>
+<div class='highlight'><pre><code class='diff'><span class='gd'>--- /usr/libexec/nx/nxserver.orig 2012-07-19 09:29:27.000000000 -0700</span>
+<span class='gi'>+++ /usr/libexec/nx/nxserver 2012-11-20 22:57:26.906090370 -0800</span>
+<span class='gu'>@@ -1483,7 +1483,7 @@</span>
+ 
+                        # Check if there is already an agent running on that display on that host
+                                let AGENT_DISPLAY=$SESS_DISPLAY-$DISPLAY_BASE+6000
+<span class='gd'>-                                       if $COMMAND_NETCAT -z &quot;$SERVER_HOST&quot; $AGENT_DISPLAY 2&gt;/dev/null</span>
+<span class='gi'>+                                       if nmap -PN &quot;$SERVER_HOST&quot; -p $AGENT_DISPLAY -oG - 2&gt;/dev/null | grep &#39;open/tcp&#39;</span>
+                                                                                      then
+                                                                                                        log 2 &quot;Warning: Stray nxagent without .nX$SESS_DISPLAY-lock found on host:port $SERVER_HOST:$AGENT_DISPLAY.&quot;
+                                                                                                                        let SESS_DISPLAY=$SESS_DISPLAY+1
+<span class='gu'>@@ -1491,7 +1492,7 @@</span>
+                   fi
+ 
+                         let PROXY_DISPLAY=$SESS_DISPLAY+4000
+<span class='gd'>-                        if $COMMAND_NETCAT -z &quot;$SERVER_HOST&quot; $PROXY_DISPLAY</span>
+<span class='gi'>+                        if nmap -PN &quot;$SERVER_HOST&quot; -p $PROXY_DISPLAY -oG - | grep &#39;open/tcp&#39;</span>
+                         then
+                                 log 2 &quot;Warning: nxagent proxy without .nX$SESS_DISPLAY-lock found on host:port $SERVER_HOST:$AGENT_DISPLAY.&quot;
+                                 let SESS_DISPLAY=$SESS_DISPLAY+1
+</code></pre>
+</div>
+<p>Not sure why they decided that replacing a simple tool that works well with a shiny new tool that lacks some of the key features was a good idea. I guess that&#8217;s what they call progress, or if you&#8217;re JWZ, you call it CADT.</p>
+    <h4>Published</h4>
+    <div class="date"><span class="datetime">20 November 2012</span></div>
+    <div class="pagination">
+      <ul>
+        
+        <li class="prev"><a href="/2012/11/13/puppet-linting-in-emacs.html" title="emacs goodness for your puppet linting needs">&larr; Previous</a></li>
+        
+        
+        <li class="next disabled"><a>Next &rarr;</a>
+          
+      </ul>
+    </div>
+  </div>
+  
+  <div class="span4">
+    Sidebar?
+  </div>
+
+</div>
+
+      </div>
+
+      <footer>
+        <p>&copy; mjc 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
